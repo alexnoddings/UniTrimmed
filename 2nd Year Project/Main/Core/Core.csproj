@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>EduLocate.Core</RootNamespace>
+    <AssemblyName>EduLocate.Core</AssemblyName>
+    <Product>EduLocate</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningsAsErrors>NU1605,CS1591</WarningsAsErrors>
+    <DocumentationFile>.\EduLocate.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>

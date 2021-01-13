@@ -1,0 +1,91 @@
+processes:
+- id: 'excel to json all'
+  tools:
+  - entry: 'xlsx-reader'
+    args:
+    - in: '*.xlsx'
+    dir: 'data/xlsx'
+  - entry: 'translator'
+    args:
+    - cfg: 'translations.json'
+    dir: 'cfg'
+  - entry: 'json-writer'
+    args:
+    - out: 'all.json'
+    dir: 'data/json'
+
+- id: 'excel to json stripped'
+  tools:
+  - entry: 'xlsx-reader'
+    args:
+    - in: '*.xlsx'
+    dir: 'data/xlsx'
+  - entry: 'translator'
+    args:
+    - cfg: 'translations.json'
+    dir: 'cfg'
+  - entry: 'stripper'
+    args:
+    - strict: 'false'
+    - keys:
+      - URN
+      - SchoolName
+      - Address
+      - Town
+      - Postcode
+      - Telephone
+      - IsPrimary
+      - IsSecondary
+      - IsCollege
+      - Gender
+      - Religion
+      - OfstedRating
+      - InspectionDate
+      - PoundPerStudent
+      - NumberOfPupils
+      - PercentGirls
+      - PercentBoys
+  - entry: 'json-writer'
+    args:
+    - out: 'all-stripped.json'
+    dir: 'data/json'
+
+- id: 'website list generator'
+  tools:
+  - entry: 'json-reader'
+    args:
+    - in: 'all.json'
+    dir: 'data/json'
+  - entry: 'stripper'
+    args:
+    - strict: 'true'
+    - keys:
+      - URN
+      - SchoolWebsite
+  - entry: 'json-writer'
+    args:
+    - out: 'sites.json'
+    dir: 'data/json'
+
+- id: 'websites to social excel'
+  tools:
+  - entry: 'website-scraper'
+    args:
+    - in: '*.html'
+    dir: 'data/sites'
+  - entry: 'xlsx-writer'
+    args:
+    - out: 'social-links.xlsx'
+    dir: 'data/xlsx'
+
+
+- id: 'social json to social excel'
+  tools:
+  - entry: 'json-reader'
+    args:
+    - in: 'scraped-links.json'
+    dir: 'data/json'
+  - entry: 'xlsx-writer'
+    args:
+    - out: 'social-links.xlsx'
+    dir: 'data/xlsx'

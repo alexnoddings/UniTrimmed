@@ -1,0 +1,28 @@
+﻿# Cloud builder config.
+
+steps:
+- id: 'build-dotnet'
+  name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'build'
+  - '--tag=gcr.io/$PROJECT_ID/dotnet'
+  - '--tag=gcr.io/$PROJECT_ID/csharp/dotnet'
+  - '.'
+
+  # Restore resources ready to build
+- id: 'restore Team14.EduLocate.Server'
+  name: 'gcr.io/$PROJECT_ID/dotnet'
+  args: ['restore']
+  dir: ''
+  waitFor: ['build-dotnet']
+
+  # Build the test projects
+- id: 'build Team14.EduLocate.Server'
+  name: 'gcr.io/$PROJECT_ID/dotnet'
+  args: ['build']
+  dir: ''
+  waitFor: ['restore Team14.EduLocate.Server']
+
+images:
+- 'gcr.io/$PROJECT_ID/dotnet'
+- 'gcr.io/$PROJECT_ID/csharp/dotnet'

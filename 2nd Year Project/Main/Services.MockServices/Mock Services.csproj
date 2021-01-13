@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>EduLocate.Services.MockServices</RootNamespace>
+    <AssemblyName>EduLocate.MockServices</AssemblyName>
+    <Authors>Team 14</Authors>
+    <Company>Team 14</Company>
+    <Product>EduLocate</Product>
+    <Copyright>Team 14, Newcastle University</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningsAsErrors>NU1605,CS1591</WarningsAsErrors>
+    <DocumentationFile>.\EduLocate.MockServices.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Services.ServiceInterfaces\Service Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

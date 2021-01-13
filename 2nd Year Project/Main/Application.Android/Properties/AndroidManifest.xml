@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0"
+          package="uk.ac.ncl.edulocatex" android:installLocation="auto">
+  <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="27" />
+  <application android:label="EduLocate" android:icon="@drawable/logo">
+    <uses-library android:name="org.apache.http.legacy" android:required="false" />
+  </application>
+</manifest>

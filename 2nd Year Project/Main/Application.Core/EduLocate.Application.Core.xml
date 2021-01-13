@@ -1,0 +1,460 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EduLocate.Application.Core</name>
+    </assembly>
+    <members>
+        <member name="T:EduLocate.Application.Core.App">
+            <inheritdoc />
+        </member>
+        <member name="M:EduLocate.Application.Core.App.#ctor">
+            <summary>Constructs the application, handling dependency service registration.</summary>
+        </member>
+        <member name="T:EduLocate.Application.Core.I18N.AppResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.AddressPostcodeNotFound">
+            <summary>
+              Looks up a localized string similar to Address or postcode not found..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.AppName">
+            <summary>
+              Looks up a localized string similar to EduLocate.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.CollegeSchool">
+            <summary>
+              Looks up a localized string similar to Show higher education establishments.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.ExtraFiltersSection">
+            <summary>
+              Looks up a localized string similar to Extra school filters.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.FindSchoolsSection">
+            <summary>
+              Looks up a localized string similar to Find schools.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GenderBoth">
+            <summary>
+              Looks up a localized string similar to Show mixed schools.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GenderBoy">
+            <summary>
+              Looks up a localized string similar to Show boys-only schools.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GenderGirl">
+            <summary>
+              Looks up a localized string similar to Show girls-only schools.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GenderSection">
+            <summary>
+              Looks up a localized string similar to Genders.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GeneralAddress">
+            <summary>
+              Looks up a localized string similar to Address: .
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GeneralEducationStages">
+            <summary>
+              Looks up a localized string similar to Education Stages:.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GeneralGender">
+            <summary>
+              Looks up a localized string similar to Gender: .
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GeneralInfo">
+            <summary>
+              Looks up a localized string similar to School information.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GeneralRating">
+            <summary>
+              Looks up a localized string similar to Rating on %provider%:.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GeneralReligion">
+            <summary>
+              Looks up a localized string similar to Religion: .
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.GeneralTelephone">
+            <summary>
+              Looks up a localized string similar to Telephone No: .
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.ImageProvidedBy">
+            <summary>
+              Looks up a localized string similar to Image courtesy of %provider%..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.KilometersUnit">
+            <summary>
+              Looks up a localized string similar to km.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.LoadingMessage">
+            <summary>
+              Looks up a localized string similar to Loading....
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.LocationFeatureMissingPermission">
+            <summary>
+              Looks up a localized string similar to Missing location permissions. Try enabling them in the settings..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.LocationFeaturesDisabledOnDevice">
+            <summary>
+              Looks up a localized string similar to Location features are disabled on this device..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.LocationFeaturesNotSupportedOnDevice">
+            <summary>
+              Looks up a localized string similar to Location features are not supported on this device..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.LocationUnknownError">
+            <summary>
+              Looks up a localized string similar to Location feature has encountered an error. Please try again or use an alternative option..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.MapPageHelp">
+            <summary>
+              Looks up a localized string similar to Click on a pin, then on the name that pops up to view a school&apos;s information..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.MustSelectAtLeastOneGenderError">
+            <summary>
+              Looks up a localized string similar to At least one gender option must be selected..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.MustSelectAtLeastOneReligionError">
+            <summary>
+              Looks up a localized string similar to At least one religion option must be selected..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.MustSelectAtLeastOneStageError">
+            <summary>
+              Looks up a localized string similar to At least one education stage must be selected..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.NoSchoolsFoundError">
+            <summary>
+              Looks up a localized string similar to No schools found.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.NotProvided">
+            <summary>
+              Looks up a localized string similar to Data not provided..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.NumberOfSchoolsFound">
+            <summary>
+              Looks up a localized string similar to %found% schools found..
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.OfstedInfo">
+            <summary>
+              Looks up a localized string similar to Last Ofsted Inspection.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.OfstedRating">
+            <summary>
+              Looks up a localized string similar to Rating: .
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.OfstedRatingDate">
+            <summary>
+              Looks up a localized string similar to Date:.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.OpenExtraFilters">
+            <summary>
+              Looks up a localized string similar to Extra Filters.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.PostcodePlaceholder">
+            <summary>
+              Looks up a localized string similar to 1 Science Square, NE4 5TG.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.PrimarySchool">
+            <summary>
+              Looks up a localized string similar to Show primary schools.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.PupilInfo">
+            <summary>
+              Looks up a localized string similar to Pupil information.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.PupilStatsBoys">
+            <summary>
+              Looks up a localized string similar to Percent boys: .
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.PupilStatsGirls">
+            <summary>
+              Looks up a localized string similar to Percent girls: .
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.PupilStatsMoneySpent">
+            <summary>
+              Looks up a localized string similar to Money spent per pupil (£): .
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.PupilStatsTotal">
+            <summary>
+              Looks up a localized string similar to Total number of pupils: .
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.ReligionSection">
+            <summary>
+              Looks up a localized string similar to Religion.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.SaveExtraFilters">
+            <summary>
+              Looks up a localized string similar to Save &amp; Apply.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.SchoolTypeToSearch">
+            <summary>
+              Looks up a localized string similar to Education stages.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.SearchRadiusKM">
+            <summary>
+              Looks up a localized string similar to Search radius: .
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.SecondarySchool">
+            <summary>
+              Looks up a localized string similar to Show secondary schools.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.ShowNonReligious">
+            <summary>
+              Looks up a localized string similar to Show ron-religious schools.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.ShowReligion">
+            <summary>
+              Looks up a localized string similar to Show religious schools.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.UseDeviceLocation">
+            <summary>
+              Looks up a localized string similar to Use Device Location.
+            </summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.AppResources.UsePostcodeForLocation">
+            <summary>
+              Looks up a localized string similar to Use Address/Postcode.
+            </summary>
+        </member>
+        <member name="T:EduLocate.Application.Core.I18N.TranslateExtension">
+            <inheritdoc />
+            <summary>Works as an easy way for markup to access the apps <see cref="T:EduLocate.Application.Core.Services.Translation.ITranslationService"/>.</summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.I18N.TranslateExtension.TranslationKey">
+            <summary>The key of the translation.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.I18N.TranslateExtension.#ctor">
+            <summary>Constructs the extension with the translation service provided by the dependency service.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.I18N.TranslateExtension.#ctor(EduLocate.Application.Core.Services.Translation.ITranslationService)">
+            <summary>Constructs the extension with a provided translation service.</summary>
+        </member>
+        <member name="T:EduLocate.Application.Core.Services.Alert.AlertServiceExtensions">
+            <summary>Extensions for <see cref="T:EduLocate.Application.Core.Services.Alert.IAlertService"/>.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Alert.AlertServiceExtensions.DisplayTranslated(EduLocate.Application.Core.Services.Alert.IAlertService,System.String,System.Boolean)">
+            <summary>Displayed a message translated using the <see cref="T:EduLocate.Application.Core.Services.Translation.ITranslationService"/> from the <see cref="T:Xamarin.Forms.DependencyService"/>.</summary>
+            <param name="alertService">The alert service to display the alert using.</param>
+            <param name="key">The key of the translated string. See <see cref="M:EduLocate.Application.Core.Services.Translation.ITranslationService.Translate(System.String)"/>.</param>
+            <param name="quick">If the alert should disappear quickly. <see cref="M:EduLocate.Application.Core.Services.Alert.IAlertService.Display(System.String,System.Boolean)"/>.</param>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Alert.AlertServiceExtensions.DisplayTranslated(EduLocate.Application.Core.Services.Alert.IAlertService,EduLocate.Application.Core.Services.Translation.ITranslationService,System.String,System.Boolean)">
+            <summary>Displayed a message translated using the <see cref="T:EduLocate.Application.Core.Services.Translation.ITranslationService"/> provided.</summary>
+            <param name="alertService">The alert service to display the alert using.</param>
+            <param name="translationService">The translation service to translate the key into a message.</param>
+            <param name="key">The key of the translated string. See <see cref="M:EduLocate.Application.Core.Services.Translation.ITranslationService.Translate(System.String)"/>.</param>
+            <param name="quick">If the alert should disappear quickly. <see cref="M:EduLocate.Application.Core.Services.Alert.IAlertService.Display(System.String,System.Boolean)"/>.</param>
+        </member>
+        <member name="T:EduLocate.Application.Core.Services.Alert.IAlertService">
+            <summary>Provides the ability to display alerts to the user on a platform.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Alert.IAlertService.Display(System.String,System.Boolean)">
+            <summary>Displays a message to the user.</summary>
+            <param name="message">The localised message to display.</param>
+            <param name="quick">If the alert should disappear quickly.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if the message to display is null.</exception>
+        </member>
+        <member name="T:EduLocate.Application.Core.Services.Theme.IThemeService">
+            <summary>Provides colours for an application theme.</summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.Services.Theme.IThemeService.PrimaryColour">
+            <summary>The primary/accent colour.</summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.Services.Theme.IThemeService.SecondaryColour">
+            <summary>The secondary colour to be used over the primary one.</summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.Services.Theme.IThemeService.TextColour">
+            <summary>The colour to be used to regular text.</summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.Services.Theme.IThemeService.BackgroundColour">
+            <summary>The colour to be used for backgrounds.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Theme.IThemeService.ColorFor(EduLocate.Application.Core.Services.Theme.ThemePart)">
+            <summary>Provides a colour given a theme part.</summary>
+            <param name="part">The part of the theme to provide the colour for.</param>
+            <returns>The colour of the given theme part.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when an invalid/unexpected <see cref="T:EduLocate.Application.Core.Services.Theme.ThemePart"/> is passed.</exception>
+        </member>
+        <member name="T:EduLocate.Application.Core.Services.Theme.SimpleThemeService">
+            <inheritdoc />
+            <summary>Provides a simple, hard-coded theme.</summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.Services.Theme.SimpleThemeService.PrimaryColour">
+            <inheritdoc />
+        </member>
+        <member name="P:EduLocate.Application.Core.Services.Theme.SimpleThemeService.SecondaryColour">
+            <inheritdoc />
+        </member>
+        <member name="P:EduLocate.Application.Core.Services.Theme.SimpleThemeService.TextColour">
+            <inheritdoc />
+        </member>
+        <member name="P:EduLocate.Application.Core.Services.Theme.SimpleThemeService.BackgroundColour">
+            <inheritdoc />
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Theme.SimpleThemeService.ColorFor(EduLocate.Application.Core.Services.Theme.ThemePart)">
+            <inheritdoc />
+        </member>
+        <member name="T:EduLocate.Application.Core.Services.Theme.ThemeExtension">
+            <inheritdoc />
+            <summary>Works as an easy way for markup to access the apps <see cref="T:EduLocate.Application.Core.Services.Theme.IThemeService" />.</summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.Services.Theme.ThemeExtension.Part">
+            <summary>The part of the theme to access.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Theme.ThemeExtension.#ctor">
+            <summary>Constructs the extension with the theme service provided by the dependency service.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Theme.ThemeExtension.#ctor(EduLocate.Application.Core.Services.Theme.IThemeService)">
+            <summary>Constructs the extension with a provided theme service.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Theme.ThemeExtension.Xamarin#Forms#Xaml#IMarkupExtension{Xamarin#Forms#Color}#ProvideValue(System.IServiceProvider)">
+            <inheritdoc />
+            <summary>Provides a value for the given <see cref="P:EduLocate.Application.Core.Services.Theme.ThemeExtension.Part" />.</summary>
+            <param name="serviceProvider">Xamarin's service provider.</param>
+            <returns>The colour to use for the given part.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when <see cref="P:EduLocate.Application.Core.Services.Theme.ThemeExtension.Part"/> is not valid/expected.</exception>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Theme.ThemeExtension.Xamarin#Forms#Xaml#IMarkupExtension#ProvideValue(System.IServiceProvider)">
+            <inheritdoc />
+            <summary>Provides a value for the given <see cref="P:EduLocate.Application.Core.Services.Theme.ThemeExtension.Part" />.</summary>
+            <param name="serviceProvider">Xamarin's service provider.</param>
+            <returns>The colour to use for the given part.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when <see cref="P:EduLocate.Application.Core.Services.Theme.ThemeExtension.Part"/> is not valid/expected.</exception>
+        </member>
+        <member name="T:EduLocate.Application.Core.Services.Theme.ThemePart">
+            <summary>The part of a theme to access.</summary>
+        </member>
+        <member name="F:EduLocate.Application.Core.Services.Theme.ThemePart.Primary">
+            <inheritdoc cref="P:EduLocate.Application.Core.Services.Theme.IThemeService.PrimaryColour"/>
+        </member>
+        <member name="F:EduLocate.Application.Core.Services.Theme.ThemePart.Secondary">
+            <inheritdoc cref="P:EduLocate.Application.Core.Services.Theme.IThemeService.SecondaryColour"/>
+        </member>
+        <member name="F:EduLocate.Application.Core.Services.Theme.ThemePart.Text">
+            <inheritdoc cref="P:EduLocate.Application.Core.Services.Theme.IThemeService.TextColour"/>
+        </member>
+        <member name="F:EduLocate.Application.Core.Services.Theme.ThemePart.Background">
+            <inheritdoc cref="P:EduLocate.Application.Core.Services.Theme.IThemeService.BackgroundColour"/>
+        </member>
+        <member name="T:EduLocate.Application.Core.Services.Translation.ICultureService">
+            <summary>Provides information about the current globalisation culture on a device.</summary>
+        </member>
+        <member name="P:EduLocate.Application.Core.Services.Translation.ICultureService.CurrentCultureInfo">
+            <summary>The current culture being used.</summary>
+        </member>
+        <member name="T:EduLocate.Application.Core.Services.Translation.ITranslationService">
+            <summary>Provides translations.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Translation.ITranslationService.Translate(System.String)">
+            <summary>Provides a translate string given it's key.</summary>
+            <param name="key">The key of the translated string.</param>
+            <returns>The translated string, or an suitable alternative value if the key was not found.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if the message to display is null.</exception>
+        </member>
+        <member name="T:EduLocate.Application.Core.Services.Translation.ResourceManagerTranslationService">
+            <inheritdoc />
+            <summary>Provides translation services using an AppResources.resx file.</summary>
+        </member>
+        <member name="F:EduLocate.Application.Core.Services.Translation.ResourceManagerTranslationService.ResourceId">
+            <summary>Path to the application resource file used for translations.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Translation.ResourceManagerTranslationService.#ctor">
+            <inheritdoc />
+            <summary>Constructs the translation service from the current run-time platform and the <see cref="T:EduLocate.Application.Core.Services.Translation.ICultureService" /> from the dependency service.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Translation.ResourceManagerTranslationService.#ctor(System.String,EduLocate.Application.Core.Services.Translation.ICultureService)">
+            <inheritdoc />
+            <summary>Constructs the translation service.</summary>
+            <param name="runTimePlatform">What platform the code is running on.</param>
+            <param name="cultureService">The culture service used to determine translations.</param>
+        </member>
+        <member name="M:EduLocate.Application.Core.Services.Translation.ResourceManagerTranslationService.Translate(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:EduLocate.Application.Core.Views.MapPage">
+            <inheritdoc />
+            <summary>Page to display schools on a map.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Views.MapPage.#ctor(System.Double,System.Double,System.Double,EduLocate.Core.EducationStages)">
+            <summary>Constructs the map at a given point.</summary>
+            <param name="latitude">The latitude of the point centre on.</param>
+            <param name="longitude">The longitude of the point centre on.</param>
+            <param name="radiusKm">The radius in kilometres to show schools in.</param>
+        </member>
+        <member name="T:EduLocate.Application.Core.Views.SchoolPage">
+            <inheritdoc />
+            <summary>Page to display information about a given school.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Views.SchoolPage.#ctor(EduLocate.Core.School)">
+            <summary>Constructs the page for a school.</summary>
+            <param name="school">The school to display the information of.</param>
+        </member>
+        <member name="T:EduLocate.Application.Core.Views.WelcomePage">
+            <inheritdoc />
+            <summary>The first page the users see.</summary>
+        </member>
+        <member name="M:EduLocate.Application.Core.Views.WelcomePage.#ctor">
+            <summary>Constructs the page.</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,6 @@
+language: csharp
+solution: EduLocate.Server.sln
+mono: none
+dotnet: 2.1.502
+script:
+ - dotnet restore

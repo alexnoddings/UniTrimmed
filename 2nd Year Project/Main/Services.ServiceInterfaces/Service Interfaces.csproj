@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>EduLocate.ServiceInterfaces</AssemblyName>
+    <RootNamespace>EduLocate.Services.ServiceInterfaces</RootNamespace>
+    <Authors>Team 14</Authors>
+    <Product>EduLocate</Product>
+    <Copyright>Team 14, Newcastle University</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>.\EduLocate.ServiceInterfaces.xml</DocumentationFile>
+    <WarningsAsErrors>NU1605,CS1591</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
+</Project>

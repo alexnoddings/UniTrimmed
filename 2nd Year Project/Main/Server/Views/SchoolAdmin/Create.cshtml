@@ -1,0 +1,111 @@
+﻿@using EduLocate.Core
+@model EduLocate.Core.School
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>School</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control"/>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label"></label>
+                <input asp-for="Telephone" class="form-control"/>
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EducationStages" class="control-label"></label>
+                <label>Valid values (comma separated): @string.Join(", ", Enum.GetNames(typeof(EducationStages)))</label>
+                <input asp-for="EducationStages" class="form-control"/>
+                <span asp-validation-for="EducationStages" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <label>Valid values: @string.Join(", ", Enum.GetNames(typeof(SchoolGender)))</label>
+                <input asp-for="Gender" class="form-control"></input>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Religion" class="control-label"></label>
+                <input asp-for="Religion" class="form-control"/>
+                <span asp-validation-for="Religion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfstedRating" class="control-label"></label>
+                <input asp-for="OfstedRating" class="form-control"/>
+                <span asp-validation-for="OfstedRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastOfstedInspection" class="control-label"></label>
+                <input asp-for="LastOfstedInspection" class="form-control"/>
+                <span asp-validation-for="LastOfstedInspection" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoneySpentPerStudent" class="control-label"></label>
+                <input asp-for="MoneySpentPerStudent" class="form-control"/>
+                <span asp-validation-for="MoneySpentPerStudent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfPupils" class="control-label"></label>
+                <input asp-for="NumberOfPupils" class="form-control"/>
+                <span asp-validation-for="NumberOfPupils" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PercentGirls" class="control-label"></label>
+                <input asp-for="PercentGirls" class="form-control"/>
+                <span asp-validation-for="PercentGirls" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label"></label>
+                <input asp-for="Latitude" class="form-control"/>
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control"/>
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control"/>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Town" class="control-label"></label>
+                <input asp-for="Town" class="form-control"/>
+                <span asp-validation-for="Town" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Postcode" class="control-label"></label>
+                <input asp-for="Postcode" class="form-control"/>
+                <span asp-validation-for="Postcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

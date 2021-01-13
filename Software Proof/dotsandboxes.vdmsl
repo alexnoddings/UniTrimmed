@@ -1,0 +1,364 @@
+------------------
+-- Module Header
+------------------
+module dotsandboxes
+exports all
+definitions
+
+-- Dot positions on the grid are 0-based.
+-- Lines must go either to the right or down.
+-- Box positions are 0 based and are the top left cornet of the box.
+-- The box on the grid's position is (2, 1).
+--
+-- A 4x3 grid:
+--   0   1   2   3
+-- 0 o   o   o   o
+--
+-- 1 o   o   o---o
+--           |   |
+-- 2 o   o   o---o
+
+-----------------------------------------------------------------------------
+-- Miscellaneous Helpers
+-- 	Miscellaneous functions that are used in but are not part of the model.
+-----------------------------------------------------------------------------
+functions
+-- Takes from n elements from ts.
+-- List comprehension would be an alternative but isn't nice to do in Isabelle.
+take[@T]: seq of @T * nat -> seq of @T
+take(ts, n) ==
+	cases n:
+		0 -> [],
+		N -> take[@T](ts, N-1) ^ [ts(N)]
+	end
+-- Cannot take more elements than there are.
+pre n <= len ts
+-- The ammount of results will be the number of elements asked for.
+post len RESULT = n
+-- The index of the element to take will decrement by 1 every call.
+measure n;
+
+-- If a sequence contains no duplicate elements.
+--	This is calculated by checking the cardinality of the set of ts and the length of ts.
+--	As sets cannot have duplicates, then if the cardinality of a set of ts is the same as the length of ts
+-- 	then there cannot be any duplicates in ts.
+-- 	Note: this was modified from the initial version as it was easier to prove in Isabelle
+are_no_duplicates[@T]: seq of @T -> bool
+are_no_duplicates(ts) ==
+	card (elems ts) = len ts
+-- No precondition. An empty sequence will have no duplicates and would not signal an issue.
+pre true
+-- No postcondition.
+post true;
+
+--------------------------------------------------------------------
+-- Player
+--  Used to denominate which player has won/played a certain move.
+--------------------------------------------------------------------
+types
+Player = <Player1> | <Player2>;
+
+functions
+-- Swaps one player for the other.
+other_player: Player -> Player
+other_player(player) ==
+	if player = <Player1> then <Player2>
+												else <Player1>
+-- No precondition.
+pre true
+-- The result cannot be the same as the first.
+post RESULT <> player;
+
+values
+-- Who plays first.
+FIRST_PLAYER = <Player1>;
+-- Who plays second.
+SECOND_PLAYER = other_player(FIRST_PLAYER);
+
+-------------------------------------------------
+-- Grid Size
+--  Represents the width or height of the grid.
+-------------------------------------------------
+types
+-- Grids must be at least 2x2, otherwise a box can't be formed.
+GridSize = nat1
+inv gridSize == gridSize >= 2;
+
+values
+-- How wide the grid will be.
+GRID_WIDTH: GridSize = 3;
+-- How high the grid will be.
+GRID_HEIGHT: GridSize = 3;
+
+---------------------------------------------------
+-- DotX, DotY
+--  Represents the position of a dot in the grid.
+---------------------------------------------------
+values
+-- The maximum value a dot's x position can take. GRID_WIDTH - 1 as dots are 0-indexed.
+DOT_X_MAX: nat = GRID_WIDTH - 1;
+-- The maximum value a dot's y position can take. GRID_HEIGHT - 1 as dots are 0-indexed.
+DOT_Y_MAX: nat = GRID_HEIGHT - 1;
+
+types
+DotX = nat
+inv dotX == dotX <= DOT_X_MAX;
+DotY = nat
+inv dotY == dotY <= DOT_Y_MAX;
+
+---------------------------------------------------
+-- BoxX, BoxY
+--  Represents the position of a box in the grid.
+---------------------------------------------------
+values
+-- The maximum value a box could be found at on the X axis. GRID_WIDTH - 2 as box positions are based on the top left dot, and are 0-indexed.
+BOX_X_MAX: nat = GRID_WIDTH - 2;
+-- The maximum value a box could be found at on the Y axis. GRID_HEIGHT - 2 as box positions are based on the top left dot, and are 0-indexed.
+BOX_Y_MAX: nat = GRID_HEIGHT - 2;
+
+types
+BoxX = nat
+inv boxX == boxX <= BOX_X_MAX;
+BoxY = nat
+inv boxY == boxY <= BOX_Y_MAX;
+
+-----------------------------------
+-- Dot
+--	Represents a dot on the grid.
+-----------------------------------
+types
+Dot ::
+	x: DotX
+	y: DotY
+-- Invariants for x and y are based in DotX and DotY.
+inv mk_Dot(-, -) == true;
+
+functions
+-- If two dots are equal.
+are_dots_equal: Dot * Dot -> bool
+are_dots_equal(dot1, dot2) ==
+	(dot1.x = dot2.x)
+	 and
+	(dot1.y = dot2.y)
+-- No precondition.
+pre true
+post if RESULT then dot1 = dot2 else dot1 <> dot2;
+
+-- If two dots are adjacent.
+are_dots_adjacent: Dot * Dot -> bool
+are_dots_adjacent(fromd, tod) ==
+	-- fromd is 1 to the left of tod.
+	(fromd.x = tod.x - 1 and fromd.y = tod.y)
+	or
+	-- fromd is 1 above toDot.
+	(fromd.x = tod.x and fromd.y = tod.y - 1)
+-- No precondition as the two dots are guarenteed to be valid dots (invariants from mk_Dot) and it doesn't matter if they are equal.
+pre true
+-- No postcondition.
+post true;
+
+--------------------------------------------------------
+-- Line
+--	Represents two connected dots on the grid. 
+--  Dots must go to the right or down, not left or up.
+--------------------------------------------------------
+types
+Line ::
+	fromDot: Dot
+	toDot: Dot
+-- Dots must be adjacent for it to be a valid line
+inv mk_Line(fd, td) ==
+	are_dots_adjacent(fd, td);
+	
+functions
+-- If two lines have the same from and to dots
+are_lines_equal: Line * Line -> bool
+are_lines_equal(line1, line2) ==
+	are_dots_equal(line1.fromDot, line2.fromDot)
+	and
+	are_dots_equal(line1.toDot, line2.toDot)
+-- No precondition.
+pre true
+post if RESULT then line1 = line2 else line1 <> line2;
+
+----------------------------------------------------------
+-- MadeMoves
+--  Represents a sequence of lines that have been drawn.
+----------------------------------------------------------
+types
+MadeMoves = seq of Line
+-- The same line cannot be drawn twice.
+inv madeMoves == are_no_duplicates[Line](madeMoves);
+
+functions
+-- If a box exists at a point. The point used is to the top left of the box.
+box_exists_at: MadeMoves * BoxX * BoxY -> bool
+box_exists_at(lines, boxX, boxY) ==
+	-- top, right, bottom, left
+	(mk_Line(mk_Dot(boxX  , boxY  ), mk_Dot(boxX+1, boxY  )) in set elems lines) and
+	(mk_Line(mk_Dot(boxX+1, boxY  ), mk_Dot(boxX+1, boxY+1)) in set elems lines) and
+	(mk_Line(mk_Dot(boxX  , boxY+1), mk_Dot(boxX+1, boxY+1)) in set elems lines) and
+	(mk_Line(mk_Dot(boxX  , boxY  ), mk_Dot(boxX  , boxY+1)) in set elems lines)
+-- No precondition. Invariants for boxX and boxY are handled in their type.
+-- A box will not be in an empty MadeMoves and would not signal an issue.
+pre true
+-- No postcondition.
+post true;
+
+-- Simple helper used when counting boxes. Returns 1 if a box exists, else 0.
+box_exists_at_nat: MadeMoves * BoxX * BoxY -> nat
+box_exists_at_nat(lines, boxX, boxY) ==
+	if box_exists_at(lines, boxX, boxY) then 1 else 0
+-- See precondition on box_exists_at.
+pre true
+-- Value must be 0 or 1 as a box exists or does not, there cannot be multiple at a given spot.
+post RESULT = 0 or RESULT = 1;
+
+-- Recursively calculates how many boxes are in a MadeMoves. 
+-- Pos represents how far in the grid it is, counting down by moving from the right to the left, then moving up a line. 
+box_count_r: MadeMoves * nat -> nat
+box_count_r(lines, pos) ==
+	cases pos:
+		-- Hit the start of the grid
+		0 -> box_exists_at_nat(lines, 0, 0),
+		-- x = n mod DOT_X_MAX, y = n div DOT_X_MAX
+		n -> box_exists_at_nat(lines, n mod DOT_X_MAX, n div DOT_X_MAX) + box_count_r(lines, n - 1)
+	end
+-- No precondition. There will be a box count of 0 for an empty MadeMoves and would not signal an issue.
+pre pos <= (GRID_WIDTH - 1) * (GRID_HEIGHT - 1) - 1
+-- No postcondition.
+post true
+-- The pos will decrement by 1 every call.
+measure pos;
+
+-- A helper for calling box_count_r that fills in the starting position as the bottom right of the grid.
+box_count: MadeMoves -> nat
+box_count(lines) == box_count_r(lines, (GRID_WIDTH - 1) * (GRID_HEIGHT - 1) - 1)
+-- See precondition for box_count_r.
+pre true
+-- See postcondition for box_count_r.
+post true;
+
+-- Who played the last move is calculated by moving forward from the first two moves. 
+who_played_last_move: MadeMoves -> Player
+who_played_last_move(lines) ==
+	cases len lines:
+		--   len = 1 means first player has played.
+		1 -> FIRST_PLAYER,
+		--   Cannot get an extra move from 1 line, so 2nd move must have been by the 2nd player.
+		2 -> SECOND_PLAYER,
+		--	 Cannot get an extra move from 2 lines, so 3rd move must have been made by 1st player.
+		3 -> FIRST_PLAYER,
+			-- If the box count 2 turns ago is less than the box count 1 turn ago, then the last turn made was a free turn (i.e. the turn did not swap)
+		n -> if box_count(take[Line](lines, n - 2)) < box_count(take[Line](lines, n - 1)) then
+					 who_played_last_move(take[Line](lines, n - 1))
+			-- If the box count 3 turns ago was 2 less than the box count 2 turns ago, then this turn was also a free turn (double free turns from a double-box-making move)	 
+				 else if box_count(take[Line](lines, n - 3)) = box_count(take[Line](lines, n - 2)) - 2 then
+				 	 who_played_last_move(take[Line](lines, n - 1))
+				 else
+					 other_player(who_played_last_move(take[Line](lines, n - 1)))
+	end
+-- Nobody played the last move if no moves were played.
+pre len lines >= 1
+-- No postcondition.
+post true
+-- The length of lines will decrement by 1 every call.
+measure len lines;
+
+-- Recursively calculates how many boxes a player has made.
+box_count_for: MadeMoves * Player -> nat
+box_count_for(lines, player) ==
+	cases len lines:
+		-- Can't have a box without lines
+		0 -> 0,
+		- -> if who_played_last_move(lines) <> player then
+					-- ignore the last move as it was not from the specified player
+					box_count_for(take[Line](lines, len lines - 1), player)
+				 else
+					-- bc(l) - bc(l-1) will be 0 if no box was made (i.e. just bcf(l-1))
+					-- if one or more boxes were made, then bc(l) - bc(l-1) will equal that number
+					(box_count(lines) - box_count(take[Line](lines, len lines - 1)))
+					-- then add the number of boxes made in previous moves
+					+ box_count_for(take[Line](lines, len lines - 1), player)
+	end
+-- No precondition. An empty MadeMoves is the base case.
+pre true
+-- No postcondition.
+post true
+-- The length of lines will decrement by 1 every call.
+measure len lines;
+
+---------------------------------------
+-- Game State
+--  Represents the state of the game.
+---------------------------------------
+-- The state is incredibly simple (only one seq of Line) as the game's state can be calculated based off of this.
+-- If it is empty, then the first player is to go. Otherwise, the next player to go can be calculated based off of the previously made moves.
+-- This would be done similar to who_played_last_move by checking if the last move created a box, as this would lead to the same player going again.
+-- Saving the next player to move here would be duplication of data.
+state DotsNBoxes of
+	madeMoves: MadeMoves
+-- No invariant. Invariant for madeMoves is on the type.
+inv mk_DotsNBoxes(-) == 
+	true
+-- Initialised to have no moves played.
+init dotsNBoxes == dotsNBoxes = mk_DotsNBoxes([])
+end
+
+functions
+-- If all moves have been played.
+game_are_all_moves_exhausted: MadeMoves -> bool
+game_are_all_moves_exhausted(lines) ==
+	len lines = (GRID_WIDTH - 1) * GRID_HEIGHT * 2
+-- No precondition. No made moves just equals false, and would not be an error.
+pre true
+-- No postcondition.
+post true;
+
+-- If the game has ended and both players have the same score.
+game_is_stalemate: MadeMoves -> bool
+game_is_stalemate(lines) ==
+	box_count_for(lines, <Player1>) = box_count_for(lines, <Player2>)
+-- Cannot be a stalemate if there are moves left to be played.
+pre game_are_all_moves_exhausted(lines)
+-- No postcondition.
+post true;
+
+-- Who has won the game.
+game_winner: MadeMoves -> Player
+game_winner(lines) ==
+	if box_count_for(lines, <Player1>) > box_count_for(lines, <Player2>) then
+		<Player1>
+	else
+		<Player2>
+-- Cannot be a winner if it is a stalemate.
+pre not game_is_stalemate(lines)
+-- No postcondition.
+post true;
+
+operations
+-- Adds a line to the played lines.
+play_move(line: Line) ==
+	madeMoves := madeMoves ^ [line]
+-- Writes to madeMoves.
+ext wr madeMoves
+-- The line may not already be drawn.
+pre not line in set elems madeMoves
+-- The line will be added to the made moves.
+post madeMoves = madeMoves~ ^ [line];
+
+----------------------------------------------------------
+-- Testing functions
+--  Used to debug the model. Not translated to Isabelle.
+----------------------------------------------------------
+-- Makes a line at x, y and is horizontal (goes right) or vertical (goes down).
+mkl(x: DotX, y: DotY, h: bool) l : Line ==
+	if h then return mk_Line(mk_Dot(x, y), mk_Dot(x + 1, y))
+	else      return mk_Line(mk_Dot(x, y), mk_Dot(x, y + 1));
+
+-- Generates a list of who played each move.
+whop() ps : seq of Player == 
+	return [who_played_last_move(take[Line](madeMoves, i)) | i in set {1, ..., len madeMoves}]
+ext rd madeMoves;
+
+end dotsandboxes

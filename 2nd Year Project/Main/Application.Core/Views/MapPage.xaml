@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:i18N="clr-namespace:EduLocate.Application.Core.I18N;assembly=EduLocate.Application.Core"
+             xmlns:theme="clr-namespace:EduLocate.Application.Core.Services.Theme;assembly=EduLocate.Application.Core"
+             x:Class="EduLocate.Application.Core.Views.MapPage">
+
+    <Grid BackgroundColor="{theme:Theme Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="20"
+               TextColor="{theme:Theme Text}" Text="{i18N:Translate MapPageHelp}" Margin="0" />
+        <Grid Grid.Row="1">
+            <maps:Map x:Name="Map" HasScrollEnabled="True" HasZoomEnabled="True" MapType="Hybrid" Margin="0" />
+            <Grid x:Name="ExtraFiltersGrid" BackgroundColor="{theme:Theme Primary}" HorizontalOptions="Center" VerticalOptions="Center" Padding="8,8,8,8" IsEnabled="False" IsVisible="False">
+                <StackLayout BackgroundColor="{theme:Theme Background}" Padding="10,10,18,10">
+                    <Label FontSize="24" HorizontalOptions="Center" TextColor="{theme:Theme Text}" Text="{i18N:Translate ExtraFiltersSection}" />
+
+                    <StackLayout Orientation="Vertical" Margin="0,10,0,10">
+                        <Label FontSize="20" HorizontalOptions="Center" TextColor="{theme:Theme Text}"
+                           Text="{i18N:Translate ReligionSection}" />
+                        <StackLayout Orientation="Horizontal">
+                            <Switch x:Name="ShowReligiousSwitch" OnColor="{theme:Theme Primary}" IsToggled="True" />
+                            <Label FontSize="20" TextColor="{theme:Theme Text}" Text="{i18N:Translate ShowReligion}" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Switch x:Name="ShowNonReligiousSwitch" OnColor="{theme:Theme Primary}" IsToggled="True" />
+                            <Label FontSize="20" TextColor="{theme:Theme Text}" Text="{i18N:Translate ShowNonReligious}" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Margin="0,10,0,10">
+                        <Label FontSize="20" HorizontalOptions="Center" TextColor="{theme:Theme Text}"
+                           Text="{i18N:Translate GenderSection}" />
+                        <StackLayout Orientation="Horizontal">
+                            <Switch x:Name="ShowBoysSwitch" OnColor="{theme:Theme Primary}" />
+                            <Label FontSize="20" TextColor="{theme:Theme Text}" Text="{i18N:Translate GenderBoy}" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Switch x:Name="ShowGirlsSwitch" OnColor="{theme:Theme Primary}" />
+                            <Label FontSize="20" TextColor="{theme:Theme Text}" Text="{i18N:Translate GenderGirl}" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Switch x:Name="ShowMixedSwitch" OnColor="{theme:Theme Primary}" IsToggled="True" />
+                            <Label FontSize="20" TextColor="{theme:Theme Text}" Text="{i18N:Translate GenderBoth}" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <Button HorizontalOptions="Center" Margin="0,10,0,0" TextColor="{theme:Theme Secondary}" BackgroundColor="{theme:Theme Primary}" Text="{i18N:Translate SaveExtraFilters}" Clicked="SaveFiltersButton_OnClicked" />
+                </StackLayout>
+            </Grid>
+            <Button HorizontalOptions="Start" VerticalOptions="End" Margin="25,0,0,15" TextColor="{theme:Theme Secondary}" BackgroundColor="{theme:Theme Primary}" Text="{i18N:Translate OpenExtraFilters}" Clicked="OpenFiltersButton_OnClicked" />
+        </Grid>
+    </Grid>
+</ContentPage>

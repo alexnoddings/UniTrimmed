@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EduLocate.ClosedXmlExcelDataService</name>
+    </assembly>
+    <members>
+        <member name="T:EduLocate.Services.ClosedXmlExcelDataService.ClosedXmlExcelDataService">
+            <inheritdoc />
+            <summary>Used the ClosedXML package to provide access to excel sheets.</summary>
+        </member>
+        <member name="M:EduLocate.Services.ClosedXmlExcelDataService.ClosedXmlExcelDataService.#ctor(EduLocate.Services.ServiceInterfaces.Coordinates.ICoordinatesService)">
+            <summary>Constructs the service.</summary>
+            <param name="coordinatesService">The service used for converting coordinates.</param>
+        </member>
+        <member name="M:EduLocate.Services.ClosedXmlExcelDataService.ClosedXmlExcelDataService.GetSchoolsFromWorkbook(System.IO.Stream)">
+            <inheritdoc />
+        </member>
+        <member name="M:EduLocate.Services.ClosedXmlExcelDataService.ClosedXmlExcelDataService.GetSchoolsFromWorksheet(ClosedXML.Excel.IXLWorksheet)">
+            <summary>Gets schools from a worksheets.</summary>
+            <param name="worksheet">The worksheets to check.</param>
+            <returns>The schools found.</returns>
+        </member>
+        <member name="M:EduLocate.Services.ClosedXmlExcelDataService.ClosedXmlExcelDataService.ToSchool(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})">
+            <summary>Converts a dictionary of key/values from a sheet(s) into a school.</summary>
+            <param name="data">The data from the sheet(s).</param>
+            <returns>A school constructed with the valid fields from data.</returns>
+        </member>
+        <member name="M:EduLocate.Services.ClosedXmlExcelDataService.ClosedXmlExcelDataService.TryParseNullAbleInt(System.String,System.Nullable{System.Int32}@)">
+            <summary>Tries to parse a string to a null-able double.</summary>
+            <param name="s">The string to parse.</param>
+            <param name="i">The int from the string, or null if the string was not a valid int.</param>
+        </member>
+        <member name="M:EduLocate.Services.ClosedXmlExcelDataService.ClosedXmlExcelDataService.TryParseNullAbleDouble(System.String,System.Nullable{System.Double}@)">
+            <summary>Tries to parse a string to a null-able double.</summary>
+            <param name="s">The string to parse.</param>
+            <param name="d">The double from the string, or null if the string was not a valid double.</param>
+        </member>
+        <member name="M:EduLocate.Services.ClosedXmlExcelDataService.ClosedXmlExcelDataService.GetEducationStages(System.String,System.String,System.String)">
+            <summary>Converts the education stage strings from a sheet into a <see cref="T:EduLocate.Core.EducationStages"/>.</summary>
+            <param name="isPrimary">The string representation of whether primary education is offered.</param>
+            <param name="isSecondary">The string representation of whether secondary education is offered.</param>
+            <param name="isPost16">The string representation of whether post-16 (college) education is offered.</param>
+            <returns>The education stages as an enum.</returns>
+        </member>
+        <member name="M:EduLocate.Services.ClosedXmlExcelDataService.ClosedXmlExcelDataService.GetSchoolGenderFromString(System.String)">
+            <summary>Converts a gender string from a sheet into a <see cref="T:EduLocate.Core.SchoolGender"/>.</summary>
+            <param name="genderString">The gender from the sheet.</param>
+            <returns>The gender as an enum.</returns>
+        </member>
+    </members>
+</doc>

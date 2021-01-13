@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18N="clr-namespace:EduLocate.Application.Core.I18N;assembly=EduLocate.Application.Core"
+             xmlns:theme="clr-namespace:EduLocate.Application.Core.Services.Theme;assembly=EduLocate.Application.Core"
+             x:Class="EduLocate.Application.Core.Views.WelcomePage">
+    <Grid BackgroundColor="{theme:Theme Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="10,20,10,20" VerticalOptions="FillAndExpand">
+                    <Image Source="banner.png" VerticalOptions="Center" HeightRequest="64" />
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1" Padding="10,5,10,5">
+            <StackLayout Orientation="Vertical" Spacing="10">
+                <StackLayout Orientation="Vertical" Margin="0,10,0,10">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label FontSize="20" TextColor="{theme:Theme Text}" Text="{i18N:Translate SearchRadiusKM}" />
+                        <Label FontSize="20" TextColor="{theme:Theme Text}"
+                               Text="{Binding Source={x:Reference DistanceSlider}, Path=Value}" />
+                        <Label FontSize="20" TextColor="{theme:Theme Text}" Text="km" />
+                    </StackLayout>
+                    <Slider x:Name="DistanceSlider" MinimumTrackColor="{theme:Theme Text}"
+                            MaximumTrackColor="{theme:Theme Text}" ThumbColor="{theme:Theme Primary}" Maximum="25"
+                            Minimum="2" Value="10" />
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Margin="0,10,0,10">
+                    <Label FontSize="20" HorizontalOptions="Center" TextColor="{theme:Theme Text}"
+                           Text="{i18N:Translate SchoolTypeToSearch}" />
+                    <StackLayout Orientation="Horizontal">
+                        <Switch x:Name="PrimarySchoolSwitch" OnColor="{theme:Theme Primary}" />
+                        <Label FontSize="20" TextColor="{theme:Theme Text}" Text="{i18N:Translate PrimarySchool}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Switch x:Name="SecondarySchoolSwitch" OnColor="{theme:Theme Primary}" />
+                        <Label FontSize="20" TextColor="{theme:Theme Text}" Text="{i18N:Translate SecondarySchool}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Switch x:Name="CollegeSchoolSwitch" OnColor="{theme:Theme Primary}" />
+                        <Label FontSize="20" TextColor="{theme:Theme Text}" Text="{i18N:Translate CollegeSchool}" />
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Margin="0,10,0,10">
+                    <Label FontSize="20" HorizontalOptions="Center" TextColor="{theme:Theme Text}"
+                           Text="{i18N:Translate FindSchoolsSection}" />
+                    <StackLayout Orientation="Vertical" Margin="0,10,0,10">
+                        <Button Text="{i18N:Translate UseDeviceLocation}" BackgroundColor="{theme:Theme Primary}"
+                                TextColor="{theme:Theme Secondary}" Clicked="UseDeviceLocation_OnClicked_Async" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Margin="0,10,0,10">
+                        <Editor x:Name="ManualAddressEditor" Placeholder="{i18N:Translate PostcodePlaceholder}" />
+                        <Button Text="{i18N:Translate UsePostcodeForLocation}" BackgroundColor="{theme:Theme Primary}"
+                                TextColor="{theme:Theme Secondary}" Clicked="EnterLocationManually_OnClicked_Async" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

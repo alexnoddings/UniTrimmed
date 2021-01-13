@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EduLocate.CoordinatesService</name>
+    </assembly>
+    <members>
+        <member name="T:EduLocate.Services.CoordinatesService.SimpleCoordinatesService">
+            <inheritdoc />
+            /// <remarks>It is advised to read <see href="https://www.ordnancesurvey.co.uk/docs/support/guide-coordinate-systems-great-britain.pdf">this supporting document</see> alongside this code.</remarks>
+        </member>
+        <member name="F:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.a">
+            <summary>Uses semi-major axis A.</summary>
+        </member>
+        <member name="F:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.b">
+            <summary>Uses semi-major axis B.</summary>
+        </member>
+        <member name="F:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.N0">
+            <summary>True-Origin northing.</summary>
+        </member>
+        <member name="F:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.E0">
+            <summary>True-Origin easting.</summary>
+        </member>
+        <member name="F:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.φ0rads">
+            <summary>True-Origin latitude.</summary>
+        </member>
+        <member name="F:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.λ0rads">
+            <summary>True-Origin longitude.</summary>
+        </member>
+        <member name="F:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.F0">
+            <summary>Central Meridian scale factor.</summary>
+        </member>
+        <member name="M:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.GridToLatitudeLongitude(System.Double,System.Double)">
+            <inheritdoc />
+        </member>
+        <member name="M:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.DistanceBetween(EduLocate.Core.School,System.Double,System.Double)">
+            <inheritdoc />
+            <remarks>See <see cref="M:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.DistanceBetween(System.Double,System.Double,System.Double,System.Double)"/> for how calculations are done.</remarks>
+        </member>
+        <member name="M:EduLocate.Services.CoordinatesService.SimpleCoordinatesService.DistanceBetween(System.Double,System.Double,System.Double,System.Double)">
+            <inheritdoc />
+            <remarks>The <see href="https://www.movable-type.co.uk/scripts/latlong.html">Haversine formula</see> is used to calculate distances.</remarks>
+        </member>
+    </members>
+</doc>

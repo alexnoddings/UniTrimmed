@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>EduLocate.CoordinatesService</AssemblyName>
+    <RootNamespace>EduLocate.Services.CoordinatesService</RootNamespace>
+    <Product>EduLocate</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>.\EduLocate.CoordinatesService.xml</DocumentationFile>
+    <WarningsAsErrors>NU1605,CS1591</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Services.ServiceInterfaces\Service Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

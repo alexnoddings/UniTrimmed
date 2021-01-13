@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EduLocate.Core</name>
+    </assembly>
+    <members>
+        <member name="T:EduLocate.Core.EducationStages">
+            <summary>Represents which stages of education somewhere offers.</summary>
+            <remarks>Can be used as a bit-mask as it is a flag.</remarks>
+        </member>
+        <member name="F:EduLocate.Core.EducationStages.None">
+            <summary>No education stages provided. This usually indicates that this information is not available.</summary>
+        </member>
+        <member name="F:EduLocate.Core.EducationStages.Primary">
+            <summary>This establishment offers primary-school level education.</summary>
+        </member>
+        <member name="F:EduLocate.Core.EducationStages.Secondary">
+            <summary>This establishment offers secondary-school level education.</summary>
+        </member>
+        <member name="F:EduLocate.Core.EducationStages.College">
+            <summary>This establishment offers college level education.</summary>
+        </member>
+        <member name="T:EduLocate.Core.School">
+            <summary>Represents a school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.Id">
+            <summary>The schools ID (sometimes referred to as the URN or Unique Reference Number).</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.IsOpen">
+            <summary>Whether the school is open.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.Name">
+            <summary>The schools name.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.Telephone">
+            <summary>The contact telephone number.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.EducationStages">
+            <summary>The stages of education offered.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.Gender">
+            <summary>The gender of the school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.Religion">
+            <summary>The religion the school has specified.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.OfstedRating">
+            <summary>The schools last Ofsted rating. Null if no Ofsted data was found for the school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.LastOfstedInspection">
+            <summary>The date of the schools last Ofsted rating. Does not have a time component. Is equal to <code>default(DateTime)</code> if no Ofsted data was found for the school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.FacebookLink">
+            <summary>The facebook social link for the school. Null if one was not found from their website.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.TwitterLink">
+            <summary>The facebook twitter link for the school. Null if one was not found from their website.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.MoneySpentPerStudent">
+            <summary>How much money is spent on each pupil on average. Null if no spending data was found for the school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.NumberOfPupils">
+            <summary>How many pupils are currently enrolled at the school. Null if no pupil data was found for the school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.PercentGirls">
+            <summary>What percentage of pupils are female. Null if no pupil data was found for the school.</summary>
+            <remarks>See also <see cref="P:EduLocate.Core.School.PercentBoys"/>.</remarks>
+        </member>
+        <member name="P:EduLocate.Core.School.Latitude">
+            <summary>The latitude of the school. Null if no position data was found for the school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.Longitude">
+            <summary>The longitude of the school. Null if no position data was found for the school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.Address">
+            <summary>The address of the school. Null if no location data was found for the school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.Town">
+            <summary>The town of the school. Null if no location data was found for the school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.Postcode">
+            <summary>The postcode of the school. Null if no location data was found for the school.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.OffersPrimaryEducation">
+            <summary>Whether this school offers primary-school level education.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.OffersSecondaryEducation">
+            <summary>Whether this school offers secondary-school level education.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.OffersCollegeEducation">
+            <summary>Whether this school offers college level education.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.IsReligious">
+            <summary>Whether this school identifies as religious.</summary>
+        </member>
+        <member name="P:EduLocate.Core.School.PercentBoys">
+            <summary>What percentage of pupils are male. Null if <see cref="P:EduLocate.Core.School.PercentGirls"/> is null.</summary>
+        </member>
+        <member name="T:EduLocate.Core.SchoolGender">
+            <summary>Represents which genders a school is open to.</summary>
+            <remarks>This is NOT a flag and as such should NOT be used as a bit-mask.</remarks>
+        </member>
+        <member name="F:EduLocate.Core.SchoolGender.None">
+            <summary>No gender specified. This usually indicates that this information is not available.</summary>
+        </member>
+        <member name="F:EduLocate.Core.SchoolGender.BoysOnly">
+            <summary>This establishment is male only.</summary>
+        </member>
+        <member name="F:EduLocate.Core.SchoolGender.GirlsOnly">
+            <summary>This establishment is female only.</summary>
+        </member>
+        <member name="F:EduLocate.Core.SchoolGender.Mixed">
+            <summary>This establishment is open to both genders.</summary>
+        </member>
+    </members>
+</doc>

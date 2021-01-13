@@ -1,0 +1,78 @@
+{
+  "key_translations": {
+    "NFTYPE": "InstitutionType",
+    "ADMPOL": "AdmissionPolicyPre2017",
+    "ADMPOL_2017": "AdmissionsPolicy",
+
+    "SCHNAME": "SchoolName",
+    "STREET & LOCALITY": "Address",
+    "TOWN": "Town",
+    "POSTCODE": "Postcode",
+    "TELNUM": "Telephone",
+    "ISPRIMARY": "IsPrimary",
+    "ISSECONDARY": "IsSecondary",
+    "ISPOST16": "IsCollege",
+    "GENDER & SIXFGEND": "Gender",
+    "RELDENOM": "Religion",
+
+    "Overall effectiveness": "OfstedRating",
+    "Inspection date": "InspectionDate",
+
+    "LEARNINGRESOURCES": "PoundPerStudent",
+
+    "NOR": "NumberOfPupils",
+    "PNORG": "PercentGirls",
+    "PNORB": "PercentBoys"
+  },
+  "key_value_translations": {
+    "InstitutionType": {
+      "AC": "SponsoredAcademy",
+      "ACC": "AcademyConverterMainstream",
+      "AC1619": "Academy1619Sponsorled",
+      "ACC1619": "Academy1619Converter",
+      "ACCS": "AcademyConverterSpecialSchool",
+      "ACS": "SponsoredSpecialAcademy",
+      "CTC": "CityTechnologyCollege",
+      "CY": "CommunitySchool",
+      "CYS": "CommunitySpecialSchool",
+      "F": "FreeschoolMainstream",
+      "FESI": "FurtherEducationSectorInstitution",
+      "FD": "FoundationSchool",
+      "FDS": "FoundationSpecialSchool",
+      "FS": "FreeschoolSpecial",
+      "SS": "StudioSchool",
+      "UTC": "UniversityTechnicalCollege",
+      "F1619": "Freeschool1619",
+      "IND": "IndependentSchool",
+      "INDSPEC": "IndependentSpecialSchool",
+      "MODFC": "CollegeFundedByMinistryOfDefence",
+      "NMSS": "Non-MaintainedSpecialSchool",
+      "VA": "VoluntaryAidedSchool",
+      "VC": "VoluntaryControlledSchool"
+    },
+    "AdmissionPolicyPre2017": {
+      "COMP": "Comprehensive",
+      "MOD": "Modern",
+      "SEL": "Selective",
+      "NA": "NotApplicable",
+      "UK": "Unknown",
+      "": "NotAvailableForIndependentSchools"
+    },
+    "AdmissionsPolicy": {
+      "SEL": "Selective",
+      "NON SEL IN HIGHLY SEL AREA": "NonSelectiveHighlySelectiveArea",
+      "OTHER NON SEL": "OtherNonSelective",
+      "NA": "NotApplicable",
+      "": "NotAvailableForIndependentSchools"
+    }
+  },
+  "value_translations": {
+    "NEW": "NewInstitution",
+    "NE": "NoEntries",
+    "NA": "NotApplicable",
+    "SUPP": "LessThan5Students",
+    "SUPP*": "DataDelayed",
+    "NP": "NotPublished",
+    "LOWCOV": "LowCoverage"
+  }
+}

@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <AssemblyName>EduLocate.Tests</AssemblyName>
+    <RootNamespace>EduLocate.Tests</RootNamespace>
+    <Product>EduLocate</Product>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include=".Common\DoubleHelperTest.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.10.1" />
+    <PackageReference Include="nunit" Version="3.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+  </ItemGroup>
+
+  <Import Project="..\Common\Common.projitems" Label=".Common" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application.Core\Application Core.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Services.CoordinateService\Coordinates Service.csproj" />
+    <ProjectReference Include="..\Services.GoogleSchoolMetadataService\Google School Metadata Service.csproj" />
+    <ProjectReference Include="..\Services.ServerApiSchoolService\Server API School Service.csproj" />
+    <ProjectReference Include="..\Services.ServiceInterfaces\Service Interfaces.csproj" />
+  </ItemGroup>
+</Project>

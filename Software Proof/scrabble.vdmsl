@@ -1,0 +1,90 @@
+-- CSC2021 Coursework Semester 2 2019
+-- Name: Alexander Noddings
+-- StdNo: 170297929
+
+-- Fill in above lines before submission.
+
+-- 
+
+types
+	Tile = char
+	inv t == t in set tileSet;
+
+	Player = token;
+
+	Word = seq of Tile;
+
+	ScoreMap = map Player to nat;
+
+	Dictionary = set of Word;
+
+	LetterMap = map char to nat;
+
+	state Scorer of
+		thePoints: LetterMap -- points scored for each tile
+		theTiles: LetterMap -- initial distribution of tiles 
+		theWords: Dictionary
+		theScores: ScoreMap -- points scored by each person
+		inv mk_Scorer(thePoints,theTiles,theWords,theScores) ==
+			dom thePoints = tileSet and dom theTiles = tileSet and theWords <> {}
+		init s ==
+			-- initialise scorer with an empty scores mapping (no players tracked)
+			s = mk_Scorer( pointsMap, tilesLeft, smallWords, {|->} )
+	end;
+
+functions
+	GetWordScore: Word * LetterMap -> nat
+		GetWordScore(word,points) == 
+			-- base case
+			if word = [] then 0
+			-- recursively calculate word score
+			else points(hd word) + GetWordScore(tl word, points)
+	;
+
+	Occurrences: Tile * Word -> nat
+		Occurrences(tile,word) == 
+			len[word(i) | i in set inds word & word(i) = tile]
+	;
+
+	EnoughTiles: Word * LetterMap -> bool
+		EnoughTiles(word, tiles) == 
+			forall t in set elems word & tiles(t) >= Occurrences(t, word)
+	;
+
+	ValidWord: Word * Dictionary -> bool
+		-- works by getting all words which match this one in the dictionary, seeing if that number is > 0
+		ValidWord(word, dictionary) == 
+			len[
+				-- get each word from dictionary where
+				forall dictionaryWord in set dictionary &
+					-- both words are of the same length 
+					len(word) = len(dictionaryWord) and 
+					-- iterate through both words at the same time, check for the words char being _ or both chars being equal
+					forall i in set inds word & word(i) = BLANK or word(i) = dictionaryWord(i)
+			] > 0
+	;
+
+operations
+	ScoreWord: Player * Word ==> ()
+		ScoreWord(player, word) == 
+		(
+			-- update the scores, change the mapping to be from player |-> old score to player |-> old + new score
+			theScores := theScores ++ {player |-> theScores(player) + GetWordScore(word, thePoints)};
+			RemoveTiles(word);
+		)
+		-- there needs to be enough tiles to use, it needs to be a valid word, and the player needs to be tracked
+		pre EnoughTiles(word, theTiles) and ValidWord(word, theWords) and player in set dom theScores
+	;
+
+	RemoveTiles: Word ==> ()
+		RemoveTiles(word) ==
+			theTiles := theTiles ++ 
+				{ t |-> theTiles(t) - Occurrences (t, word) | t in set dom theTiles & t in set elems word }
+	;
+
+	AddPlayer: Player ==> ()
+		AddPlayer(player) ==
+			theScores := theScores ++ {player |-> 0}
+		-- player needs to not already be tracked to avoid resetting their score when adding
+		pre not (player in set dom theScores)
+	;

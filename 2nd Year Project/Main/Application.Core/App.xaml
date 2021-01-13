@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:theme="clr-namespace:EduLocate.Application.Core.Services.Theme;assembly=EduLocate.Application.Core"
+             x:Class="EduLocate.Application.Core.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{theme:Theme Primary}" />
+                <Setter Property="BarTextColor" Value="{theme:Theme Secondary}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

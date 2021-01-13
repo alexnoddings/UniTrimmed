@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EduLocate.ServiceInterfaces</name>
+    </assembly>
+    <members>
+        <member name="T:EduLocate.Services.ServiceInterfaces.Coordinates.ICoordinatesService">
+            <summary>Converts between northing/easting and calculates the distance between points.</summary>
+        </member>
+        <member name="M:EduLocate.Services.ServiceInterfaces.Coordinates.ICoordinatesService.GridToLatitudeLongitude(System.Double,System.Double)">
+            <summary>Convert a northing/easting pair to a latitude/longitude pair.</summary>
+            <param name="northing">The northing part.</param>
+            <param name="easting">The easting part.</param>
+            <returns>A tuple of the (latitude, longitude).</returns>
+        </member>
+        <member name="M:EduLocate.Services.ServiceInterfaces.Coordinates.ICoordinatesService.DistanceBetween(EduLocate.Core.School,System.Double,System.Double)">
+            <summary>Calculates the distance between a school and a latitude/longitude.</summary>
+            <param name="school">The source school.</param>
+            <param name="latitude">The target latitude.</param>
+            <param name="longitude">The target longitude.</param>
+            <returns>The distance between the two points in kilometres. Can be null if the schools latitude/longitude is invalid/null.</returns>
+        </member>
+        <member name="M:EduLocate.Services.ServiceInterfaces.Coordinates.ICoordinatesService.DistanceBetween(System.Double,System.Double,System.Double,System.Double)">
+            <summary>Calculates the distance between one latitude/longitude and another.</summary>
+            <param name="latitude1">The source latitude.</param>
+            <param name="longitude1">The source longitude.</param>
+            <param name="latitude2">The target latitude.</param>
+            <param name="longitude2">The target longitude.</param>
+            <returns>The distance between the two points in kilometres.</returns>
+        </member>
+        <member name="T:EduLocate.Services.ServiceInterfaces.Excel.IExcelDataService">
+            <summary>Handles working with Excel sheets.</summary>
+        </member>
+        <member name="M:EduLocate.Services.ServiceInterfaces.Excel.IExcelDataService.GetSchoolsFromWorkbook(System.IO.Stream)">
+            <summary>Gets a list of schools from a stream.</summary>
+            <param name="data">The data stream to use.</param>
+            <returns>A list of schools found in the stream.</returns>
+        </member>
+        <member name="T:EduLocate.Services.ServiceInterfaces.School.ISchoolRepository">
+            <inheritdoc />
+            <summary>Handles storing schools as well as finding them.</summary>
+        </member>
+        <member name="M:EduLocate.Services.ServiceInterfaces.School.ISchoolRepository.GetAllSchoolsAsync">
+            <summary>Gets a list of all schools.</summary>
+            <returns>All of the schools that are known.</returns>
+            <remarks>This lives in the repository and not regular service as this functionality is not exposed to clients, only to the backend.</remarks>
+        </member>
+        <member name="M:EduLocate.Services.ServiceInterfaces.School.ISchoolRepository.SelectiveUpdateSchoolAsync(EduLocate.Core.School)">
+            <summary>Updates an existing school based on their non-null values, or saves a non-existing school.</summary>
+            <param name="school">The school to save.</param>
+        </member>
+        <member name="M:EduLocate.Services.ServiceInterfaces.School.ISchoolRepository.SelectiveUpdateSchoolsAsync(System.Collections.Generic.IEnumerable{EduLocate.Core.School})">
+            <summary>Updates existing schools based on their non-null values, or saves non-existing schools.</summary>
+            <param name="school">The schools to save.</param>
+        </member>
+        <member name="T:EduLocate.Services.ServiceInterfaces.School.ISchoolService">
+            <summary>Handles getting schools from a source.</summary>
+        </member>
+        <member name="M:EduLocate.Services.ServiceInterfaces.School.ISchoolService.GetSchoolAsync(System.Int32)">
+            <summary>Find a school from the given ID.</summary>
+            <param name="id">The school's ID.</param>
+            <returns>The school.</returns>
+        </member>
+        <member name="M:EduLocate.Services.ServiceInterfaces.School.ISchoolService.GetSchoolsInRadiusAsync(System.Double,System.Double,System.Double)">
+            <summary>Finds all schools in a radius around a point.</summary>
+            <param name="latitude">The point's latitude.</param>
+            <param name="longitude">The point's longitude.</param>
+            <param name="radiusKm">The radius to search in kilometres.</param>
+            <returns>All of the found schools.</returns>
+        </member>
+        <member name="T:EduLocate.Services.ServiceInterfaces.School.Metadata.ISchoolMetadata">
+            <summary>Metadata about a school.</summary>
+        </member>
+        <member name="P:EduLocate.Services.ServiceInterfaces.School.Metadata.ISchoolMetadata.ImageUri">
+            <summary>An image of the school. May be null or empty if one could not be found.</summary>
+        </member>
+        <member name="P:EduLocate.Services.ServiceInterfaces.School.Metadata.ISchoolMetadata.Rating">
+            <summary>A rating of the school.</summary>
+        </member>
+        <member name="T:EduLocate.Services.ServiceInterfaces.School.Metadata.ISchoolMetadataService">
+            <summary>Provides metadata about a given school.</summary>
+        </member>
+        <member name="M:EduLocate.Services.ServiceInterfaces.School.Metadata.ISchoolMetadataService.GetMetadataForSchoolAsync(EduLocate.Core.School)">
+            <summary>Get the metadata for a school.</summary>
+            <param name="school">The school.</param>
+            <returns>The found metadata. May be incomplete.</returns>
+        </member>
+        <member name="P:EduLocate.Services.ServiceInterfaces.School.Metadata.ISchoolMetadataService.ProviderName">
+            <summary>The name of the service providing this metadata.</summary>
+        </member>
+    </members>
+</doc>

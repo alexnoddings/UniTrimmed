@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EduLocate.GoogleSchoolMetadataService</name>
+    </assembly>
+    <members>
+        <member name="T:EduLocate.Services.GoogleSchoolMetadataService.GoogleSchoolMetadataService">
+            <inheritdoc />
+            <summary>Provides metadata for schools from Google's Places API.</summary>
+            <remarks>See <see href="https://developers.google.com/places/web-service/intro">Google's Places API</see> documentation.</remarks>
+        </member>
+        <member name="M:EduLocate.Services.GoogleSchoolMetadataService.GoogleSchoolMetadataService.GetMetadataForSchoolAsync(EduLocate.Core.School)">
+            <inheritdoc />
+        </member>
+        <member name="P:EduLocate.Services.GoogleSchoolMetadataService.GoogleSchoolMetadataService.ProviderName">
+            <inheritdoc />
+        </member>
+        <member name="M:EduLocate.Services.GoogleSchoolMetadataService.GoogleSchoolMetadataService.GetCandidateForSchoolAsync(EduLocate.Core.School)">
+            <summary>Finds the Places APIs first Candidate for a school, or null if none were found.</summary>
+            <param name="school">The school.</param>
+            <returns>The first Candidate found, or null if none were found.</returns>
+        </member>
+        <member name="M:EduLocate.Services.GoogleSchoolMetadataService.GoogleSchoolMetadataService.GetImageUriFromReferenceAsync(System.String)">
+            <summary>Finds an image uri given its reference, or <code>string.Empty</code> if the reference was not valid.</summary>
+            <param name="photoReference">The reference to the photo.</param>
+            <returns>A uri pointing to the photo resource, or <code>string.Empty</code> if the reference was not valid.</returns>
+        </member>
+        <member name="T:EduLocate.Services.GoogleSchoolMetadataService.GoogleSchoolMetadataService.Response">
+            <summary>See <see href="https://developers.google.com/places/web-service/search">Google's Places API</see> for how this is structured.</summary>
+        </member>
+        <member name="T:EduLocate.Services.GoogleSchoolMetadataService.GoogleSchoolMetadataService.Candidate">
+            <summary>See <see href="https://developers.google.com/places/web-service/search">Google's Places API</see> for how this is structured.</summary>
+        </member>
+        <member name="T:EduLocate.Services.GoogleSchoolMetadataService.GoogleSchoolMetadataService.Photo">
+            <summary>See <see href="https://developers.google.com/places/web-service/search">Google's Places API</see> for how this is structured.</summary>
+        </member>
+        <member name="T:EduLocate.Services.GoogleSchoolMetadataService.SimpleSchoolMetadata">
+            <inheritdoc />
+            <summary>Provides a simple implementation of school metadata.</summary>
+        </member>
+        <member name="P:EduLocate.Services.GoogleSchoolMetadataService.SimpleSchoolMetadata.ImageUri">
+            <inheritdoc />
+        </member>
+        <member name="P:EduLocate.Services.GoogleSchoolMetadataService.SimpleSchoolMetadata.Rating">
+            <inheritdoc />
+        </member>
+        <member name="M:EduLocate.Services.GoogleSchoolMetadataService.SimpleSchoolMetadata.#ctor(System.String,System.Double)">
+            <summary>Constructs the simple metadata.</summary>
+            <param name="imageUri">The <see cref="P:EduLocate.Services.GoogleSchoolMetadataService.SimpleSchoolMetadata.ImageUri"/></param>
+            <param name="rating">The <see cref="P:EduLocate.Services.GoogleSchoolMetadataService.SimpleSchoolMetadata.Rating"/></param>
+        </member>
+        <member name="T:EduLocate.Common.DoubleHelper">
+            <summary>Helper class for working with doubles.</summary>
+        </member>
+        <member name="M:EduLocate.Common.DoubleHelper.ValuesClose(System.Nullable{System.Double},System.Nullable{System.Double},System.Double)">
+            <summary>Helper to check that two double?s are comparably-similar in value.</summary>
+            <param name="value1">The first value.</param>
+            <param name="value2">The second value.</param>
+            <param name="absoluteAcceptableDifference">An absolute value of how different they are allowed to be.</param>
+            <returns></returns>
+        </member>
+        <member name="T:EduLocate.Common.Keys">
+            <summary>Statically accessible location to store keys.</summary>
+        </member>
+        <member name="F:EduLocate.Common.Keys.GoogleApi">
+            <summary>The key used by the Google API services.</summary>
+            <remarks>If this is not authorising correctly, it should be checked that the key's fingerprint/referrer settings are correct for the system using it.</remarks>
+        </member>
+        <member name="F:EduLocate.Common.Keys.BingMapsApi">
+            <summary>The key used by the Bing Maps API services.</summary>
+        </member>
+        <member name="T:EduLocate.Common.SimpleWebRequest">
+            <summary>Handles sending simple web requests and deserialising the response to a given type.</summary>
+        </member>
+        <member name="M:EduLocate.Common.SimpleWebRequest.GetResponseFromEndpointAsync``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>Sends a GET request asynchronously.</summary>
+            <typeparam name="T">The type to deserialise the response to.</typeparam>
+            <param name="uri">The uri to make the request to.</param>
+            <param name="parameters">The parameters to add to the uri. The values are turned into strings via ToString before being encoded.</param>
+            <returns>The servers response, of type T.</returns>
+        </member>
+        <member name="M:EduLocate.Common.SimpleWebRequest.GetResponseFromEndpointAsync``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>Sends a GET request asynchronously.</summary>
+            <typeparam name="T">The type to deserialise the response to.</typeparam>
+            <param name="uri">The uri to make the request to.</param>
+            <param name="parameters">The parameters to add to the uri. The values are turned into strings via ToString before being encoded.</param>
+            <returns>The servers response, of type T.</returns>
+        </member>
+        <member name="M:EduLocate.Common.SimpleWebRequest.GetResponseFromEndpointAsync``1(System.Uri)">
+            <summary>Sends a GET request asynchronously.</summary>
+            <typeparam name="T">The type to deserialise the response to.</typeparam>
+            <param name="uri">The uri to make the request to.</param>
+            <returns>The servers response, of type T.</returns>
+        </member>
+        <member name="M:EduLocate.Common.SimpleWebRequest.GetRedirectFromEndpointAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>Sends a GET request asynchronously and returns where the request was redirected to.</summary>
+            <param name="uri">The uri to make the request to.</param>
+            <param name="parameters">The parameters to add to the uri. The values are turned into strings via ToString before being encoded.</param>
+            <returns>The uri the request was redirected to.</returns>
+        </member>
+        <member name="M:EduLocate.Common.SimpleWebRequest.GetRedirectFromEndpointAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>Sends a GET request asynchronously and returns where the request was redirected to.</summary>
+            <param name="uri">The uri to make the request to.</param>
+            <param name="parameters">The parameters to add to the uri. The values are turned into strings via ToString before being encoded.</param>
+            <returns>The uri the request was redirected to.</returns>
+        </member>
+        <member name="M:EduLocate.Common.SimpleWebRequest.GetRedirectFromEndpointAsync(System.Uri)">
+            <summary>Sends a GET request asynchronously and returns where the request was redirected to.</summary>
+            <param name="uri">The uri to make the request to.</param>
+            <returns>The uri the request was redirected to.</returns>
+        </member>
+        <member name="M:EduLocate.Common.SimpleWebRequest.EncodeParameters(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>Handles transforming a dictionary of parameters into a string for a uri.</summary>
+            <param name="parameters">The parameters to transform. The values are turned into strings via ToString.</param>
+            <returns>A parameters string to use in a uri.</returns>
+        </member>
+    </members>
+</doc>

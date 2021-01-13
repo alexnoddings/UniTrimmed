@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EduLocate.MockServices</name>
+    </assembly>
+    <members>
+        <member name="T:EduLocate.Services.MockServices.MockMetadataService">
+            <inheritdoc />
+            <summary>Provides mock metadata about a school. Values are hard-coded.</summary>
+        </member>
+        <member name="M:EduLocate.Services.MockServices.MockMetadataService.GetMetadataForSchoolAsync(EduLocate.Core.School)">
+            <inheritdoc />
+        </member>
+        <member name="P:EduLocate.Services.MockServices.MockMetadataService.ProviderName">
+            <inheritdoc />
+        </member>
+        <member name="T:EduLocate.Services.MockServices.MockSchoolService">
+            <inheritdoc />
+            <summary>Provides sample school data.</summary>
+        </member>
+        <member name="M:EduLocate.Services.MockServices.MockSchoolService.GetSchoolAsync(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:EduLocate.Services.MockServices.MockSchoolService.GetSchoolsInRadiusAsync(System.Double,System.Double,System.Double)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
